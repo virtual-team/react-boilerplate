@@ -1,0 +1,27 @@
+
+[
+  {
+    "method": "all",
+    "path": "/article/list",
+    "data": {
+      "code": 200,
+      "msg": "hello world"
+    }
+  },
+  {
+    "method": "get",
+    "path": "/article/list",
+    "data": {
+      "code": 200,
+      "msg": "hello world"
+    }
+  },
+  {
+    "method": "post",
+    "path": "/article/list",
+    "data": {
+      "code": 200,
+      "msg": "hello world"
+    }
+  }
+]
