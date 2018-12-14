@@ -1,8 +1,11 @@
 
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const isProd = process.env.NODE_ENV === 'production'
 
 module.exports = {
   mode: process.env.NODE_ENV,
+  stats: 'errors-only',
   entry: './src/app.js',
   module: {
     rules: [
@@ -25,9 +28,10 @@ module.exports = {
     ]
   },
   plugins: [
-    new HtmlwebpackPlugin({
+    new HtmlWebpackPlugin({
       title: '标题',
-      template: './src/template.html'
+      template: './src/index.tpl.html',
+      vconsole: !isProd	  // 是否添加vconsole方便移动端调试
     })
   ],
   resolve: {

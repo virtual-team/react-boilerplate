@@ -1,8 +1,9 @@
 
+const path = require('path')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
-const config = require('./common.js')
-const mock = require('./mock.js')
+const config = require('./webpack.common.js')
+const request = require('../request')
 
 module.exports = merge(config, {
   devtool: 'eval-source-map',
@@ -25,9 +26,9 @@ module.exports = merge(config, {
     open: true,
     hot: true,
     host: '0.0.0.0',    // 局域网也可以访问
-    port: 8888,
+    port: 8899,
     before (app) {
-      mock(app)
+      request(app)
     },
     // index: '', // specify to enable root proxying
     // proxy: {

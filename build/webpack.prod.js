@@ -1,13 +1,14 @@
 
+const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const merge = require('webpack-merge')
-const config = require('./common.js')
+const config = require('./webpack.common.js')
 
 module.exports = merge(config, {
   output: {
-    path: './dist',
-    filename: '[name].js',
-    chunkFilename: '[name].js'
+    path: path.resolve(__dirname, '../dist'),
+    filename: 'js/[name].js',
+    chunkFilename: 'js/[name].js'
   },
   module: {
     rules: [
@@ -34,8 +35,21 @@ module.exports = merge(config, {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: '[name].css',
-      chunkFilename: '[name].css'
+      filename: 'css/[name].css',
+      chunkFilename: 'css/[name].css'
     })
-  ]
+  ],
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          chunks: 'all',
+          name: 'vendor',
+          test: /[\\/]node_modules[\\/]/,
+          enforce: true,
+          reuseExistingChunk: true,
+        }
+      }
+    }
+  }
 })
